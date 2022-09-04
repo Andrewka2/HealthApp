@@ -9,10 +9,12 @@ import Colors from "../constants/Colors";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
 
+import ScheduleReview from "../screens/ScheduledReviews";
+
 const BottomTab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
+const colorScheme = useColorScheme();
 
   return (
     <BottomTab.Navigator
@@ -36,6 +38,16 @@ export default function BottomTabNavigator() {
             <TabBarIcon name="ios-code" color={color} />
           ),
         }}
+      />
+      <BottomTab.Screen
+      name="Schedule Review"
+      component={ScheduleReview}
+      options={{
+        tabBarLabel: 'Schedule Review',
+        tabBarIcon: ({color}) => (
+          <TabBarIcon name="ios-code" color={color} />
+        )
+      }}
       />
     </BottomTab.Navigator>
   );
@@ -76,3 +88,18 @@ function TabTwoNavigator() {
     </TabTwoStack.Navigator>
   );
 }
+
+/*
+const TabScheduleReviewStack = createStackNavigator();
+
+function ScheduleReviewNavigator() {
+  return (
+    <TabScheduleReviewStack.Navigator>
+      <TabScheduleReviewStack.Screen
+      name="ScheduleReview"
+      component={ScheduleReview}
+      />
+    </TabScheduleReviewStack.Navigator>
+  )
+}
+*/

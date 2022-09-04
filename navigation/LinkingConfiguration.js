@@ -21,6 +21,11 @@ export default {
               TabTwoScreen: "two",
             },
           },
+          ScheduledReviews: {
+            screens: {
+              ScheduledReviews: "ScheduledReviews",
+            },
+          },
         },
       },
       NotFound: "*",

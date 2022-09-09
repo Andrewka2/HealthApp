@@ -5,29 +5,40 @@ export const modalStyles = StyleSheet.create({
       backgroundColor:'#000',
     },
     changeItemCont: {
-        flexDirection: 'row',
         margin: 10
     },
     changeItemText: {
         marginRight: 5,
-        fontSize: 15
+        fontSize: 12,
+        color: "#A8A8A8"
+    },
+    closeImg: {
+      width: 20,
+      height: 20
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 22,
+      position: 'relative'
+    },
+    close: {
+      position: "absolute",
+      top: 67,
+      right: 80,
+      zIndex: 1000
     },
     input: {
         borderColor: '#000',
-        borderWidth: 1
+        borderBottomWidth: 1,
+        width: '100%'
     },
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22
-      },
       modalView: {
-        margin: 20,
+        margin: 15,
         backgroundColor: "white",
         borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
+        padding: 20,
         shadowColor: "#000",
         shadowOffset: {
           width: 0,
@@ -40,7 +51,8 @@ export const modalStyles = StyleSheet.create({
       button: {
         borderRadius: 20,
         padding: 10,
-        elevation: 2
+        elevation: 2,
+        marginTop: 10
       },
       buttonOpen: {
         backgroundColor: "#F194FF",

@@ -1,4 +1,4 @@
-import { ADD_DEFAULT_CALENDAR, UPDATE_CALENDAR_FIELDS, DELETE_CALENDAR_ITEM } from '../constants';
+import { ADD_DEFAULT_CALENDAR, ADD_CALENDAR_ITEM, UPDATE_CALENDAR_FIELDS, DELETE_CALENDAR_ITEM } from '../constants';
 
 const initialState = {
     defaultCalendar: {
@@ -23,7 +23,20 @@ const calendarReducer = (state = initialState, action) => {
                 ...state,
                 defaultCalendar: action.payload
             };
+        case ADD_CALENDAR_ITEM: 
+            if(state.defaultCalendar.hasOwnProperty(action.payload.date)){
+                return {
+                    ...state,
+                    defaultCalendar: { ...state.defaultCalendar, [action.payload.date]: [...state.defaultCalendar[action.payload.date], action.payload]  }
+                }
+            }else{
+                return {
+                    ...state,
+                    defaultCalendar: { ...state.defaultCalendar, [action.payload.date]: [action.payload] }
+                }
+            }
         case UPDATE_CALENDAR_FIELDS:
+            console.log(action.payload)
             let updatedResult = {};
             if (state.defaultCalendar.hasOwnProperty(action.payload.date)) {
                 for (let prop in state.defaultCalendar) {
@@ -53,7 +66,7 @@ const calendarReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
-                defaultCalendar: updatedResult
+                defaultCalendar: {...state.defaultCalendar, [action.payload.date]: [action.payload.updatedFields]}
             }
         case DELETE_CALENDAR_ITEM: {
             let resultObj = {} 

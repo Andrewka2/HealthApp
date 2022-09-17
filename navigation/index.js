@@ -10,6 +10,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import BottomTabNavigator from "./BottomTabNavigator";
 import LinkingConfiguration from "./LinkingConfiguration";
+import RegistrationScreen from "../screens/Registration";
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import BottomSignInNavigator from "./BottomSignInNavigator";
 
 export default function Navigation({ colorScheme }) {
   return (
@@ -27,14 +31,33 @@ export default function Navigation({ colorScheme }) {
 const Stack = createStackNavigator();
 
 function RootNavigator() {
+  const defaultUser = useSelector((state) => state.user.defaultUser)
+
+  let [signedIn, setSignedIn] = useState(false)
+
+  useEffect(() => {
+    setSignedIn(defaultUser.isSignedIn)
+    console.log('signed in');
+  }, [defaultUser.isSignedIn])
+  console.log(defaultUser.isSignedIn);
+  console.log(signedIn);
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Root" component={BottomTabNavigator} />
-      <Stack.Screen
-        name="NotFound"
-        component={NotFoundScreen}
-        options={{ title: "Oops!" }}
-      />
+      {signedIn == true ? (
+        <>
+          <Stack.Screen name="Root" component={BottomTabNavigator} />
+          <Stack.Screen
+            name="NotFound"
+            component={NotFoundScreen}
+            options={{ title: "Oops!" }}
+          />
+        </>
+      ) : (
+        <>
+          <Stack.Screen name="Root" component={BottomSignInNavigator} />
+        </>
+      )}
     </Stack.Navigator>
   );
 }

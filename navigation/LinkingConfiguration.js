@@ -26,6 +26,16 @@ export default {
               ScheduledReviews: "ScheduledReviews",
             },
           },
+          Login: {
+            screens: {
+              Login: "Login",
+            },
+          },
+          Registration: {
+            screens: {
+              Registration: "Registration",
+            },
+          },
         },
       },
       NotFound: "*",

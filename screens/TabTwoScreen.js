@@ -1,8 +1,12 @@
 import { StyleSheet } from "react-native";
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
+import { useSelector } from "react-redux";
 
 export default function TabTwoScreen() {
+  const defaultUser = useSelector((state) => state.defaultCalendar)
+  console.log(defaultUser);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab Two</Text>

@@ -11,6 +11,8 @@ import TabTwoScreen from "../screens/TabTwoScreen";
 
 import ScheduleReview from "../screens/ScheduledReviews";
 import QuizzScreen from "../screens/QuizzScreen";
+import LoginScreen from "../screens/LoginScreen";
+
 
 const BottomTab = createBottomTabNavigator();
 
@@ -25,39 +27,18 @@ const colorScheme = useColorScheme();
       <BottomTab.Screen
         name="TabOne"
         component={TabOneNavigator}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
-          ),
-        }}
       />
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoNavigator}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
-          ),
-        }}
       />
       <BottomTab.Screen
       name="Schedule Review"
       component={ScheduleReview}
-      options={{
-        tabBarLabel: 'Schedule Review',
-        tabBarIcon: ({color}) => (
-          <TabBarIcon name="ios-code" color={color} />
-        )
-      }}
       />
       <BottomTab.Screen
         name="Quiz"
         component={QuizzScreen}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
-          ),
-        }}
       />
     </BottomTab.Navigator>
   );

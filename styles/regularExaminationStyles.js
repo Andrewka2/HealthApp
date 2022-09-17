@@ -4,16 +4,28 @@ export const styles = StyleSheet.create({
     container: {
         paddingLeft: 20,
         paddingRight: 20,
-        marginTop: 25,
-        marginBottom: 30
+        marginBottom: 25
     },
     position: {
-        marginBottom: 15
+        marginBottom: 15,
+        backgroundColor: '#65D6B4',
+        borderRadius: 10
+    },
+    timeDayCont: {
+        flexDirection: 'row',
+        alignItems: "center",
+        justifyContent: "space-between"
+    },
+    btnDeleteCont: {
+        marginTop: 20,
+        width: 100
     },
     positionText: {
         textAlign: 'center',
         fontSize: 15,
         fontWeight: '600',
+        color: '#fff',
+        padding: 5
     },
     timeCont: {
         flexDirection: 'row',
@@ -31,6 +43,10 @@ export const styles = StyleSheet.create({
         with: 40,
         height: 40,
         
+    },
+    calendarImage: {
+        with: 30,
+        height: 30,
     },
     procedure: {
         marginTop: 10
@@ -55,7 +71,7 @@ export const styles = StyleSheet.create({
         backgroundColor: "#000",
     },
     timeText: {
-        fontSize: 24,
+        fontSize: 22,
         fontWeight: '900',
         color: '#A8A8A8'
     }

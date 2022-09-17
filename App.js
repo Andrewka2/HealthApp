@@ -8,8 +8,6 @@ import { useColorScheme } from "react-native";
 import { Provider } from 'react-redux';
 import store from './root/store';
 
-
-
 export default function App() {
   const isLoadingComplete = useLoadedAssets();
   const colorScheme = useColorScheme();

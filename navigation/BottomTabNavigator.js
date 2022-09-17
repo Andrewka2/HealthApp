@@ -10,7 +10,9 @@ import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
 
 import ScheduleReview from "../screens/ScheduledReviews";
+import QuizzScreen from "../screens/QuizzScreen";
 import LoginScreen from "../screens/LoginScreen";
+
 
 const BottomTab = createBottomTabNavigator();
 
@@ -33,6 +35,10 @@ const colorScheme = useColorScheme();
       <BottomTab.Screen
       name="Schedule Review"
       component={ScheduleReview}
+      />
+      <BottomTab.Screen
+        name="Quiz"
+        component={QuizzScreen}
       />
     </BottomTab.Navigator>
   );
@@ -76,7 +82,6 @@ function TabTwoNavigator() {
 
 /*
 const TabScheduleReviewStack = createStackNavigator();
-
 function ScheduleReviewNavigator() {
   return (
     <TabScheduleReviewStack.Navigator>

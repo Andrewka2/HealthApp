@@ -7,3 +7,4 @@ export const ADD_CALENDAR_ITEM = "ADD_CALENDAR_ITEM"
 
 // User
 export const ADD_DEFAULT_USER = "ADD_DEFAULT_USER"
+export const FIND_USER_BY_ID = "FIND_USER_BY_ID"

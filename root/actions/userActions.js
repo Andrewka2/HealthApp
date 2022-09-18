@@ -1,4 +1,5 @@
 import { ADD_DEFAULT_USER, SERVER_ERROR } from '../constants';
+import uuid from 'react-native-uuid';
 
 export function setDefaultUserAction(data) {
     let result = saveUser(data)
@@ -13,9 +14,10 @@ export function setDefaultUserAction(data) {
 
 function saveUser(data) {
     let validUser = true
+    console.log("HERE IS THE DATA");
     console.log(data);
     return {
-        id: String = data.id,
+        id: String = data.customId,
         name: String = data.name,
         email: String = data.email,
         isSignedIn: validUser,
@@ -40,7 +42,12 @@ function fetchCreateUser(userData) {
     })
 }
 
+function fetchFindUserById(userID) {
+    return fetch('http://localhost:3000/getUserById' + '?id=' + userID)
+}
+
 export function createUser(userData) {
+    userData[0].customId = uuid.v4()
     try{
         return function (dispatch) {
             fetchCreateUser(userData).then(
@@ -57,9 +64,19 @@ export function createUser(userData) {
     }
 }
 
-export function setUserDefaultData(data) {
-    return {
-        type: ADD_DEFAULT_USER,
-        payload: data
+export function findUserById(userID) {
+    try{
+        return function (dispatch) {
+            fetchFindUserById(userID).then(
+                (data) => {
+                    data.json().then((result)=>{
+                        console.log(result.data);
+                    })
+                },
+                error => dispatch(serverError(error))
+            )
+        }
+    }catch(error){
+        console.log(error)
     }
 }

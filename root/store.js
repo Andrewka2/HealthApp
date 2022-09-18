@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import calendarReducer from './reducers/calendarReducer';
-import userReducer from './reducers/user';
+import userReducer from './reducers/userReducer';
 
 const rootReducer = combineReducers({
     calendar: calendarReducer,

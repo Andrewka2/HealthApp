@@ -1,10 +1,23 @@
-import { ADD_DEFAULT_CALENDAR, SERVER_ERROR, UPDATE_CALENDAR_FIELDS, DELETE_CALENDAR_ITEM } from '../constants';
+import { ADD_DEFAULT_CALENDAR, ADD_CALENDAR_ITEM_LIST, ADD_CALENDAR_ITEM, SERVER_ERROR, UPDATE_CALENDAR_FIELDS, DELETE_CALENDAR_ITEM } from '../constants';
 import {calendarDataNormalize} from '../../helpers/calendarDataNormalize';
 
 export function updateCalendarFields(data){
-    console.log(data)
     return {
         type: UPDATE_CALENDAR_FIELDS,
+        payload: data
+    }
+}
+
+export function addCalendarItem(data){
+    return {
+        type: ADD_CALENDAR_ITEM,
+        payload: data
+    }
+}
+
+export function addItemList(data){
+    return {
+        type: ADD_CALENDAR_ITEM_LIST,
         payload: data
     }
 }
@@ -32,7 +45,7 @@ function serverError(error) {
 }
 
 function fetchUpdateCalendarInfo(updatedFields) {
-    return fetch('http://localhost:3000/updateCalendarData', {
+    return fetch('http://10.0.2.2:3000/updateCalendarData', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -40,11 +53,13 @@ function fetchUpdateCalendarInfo(updatedFields) {
         body: JSON.stringify(updatedFields)
     })
 }
+
 function fetchCalendarInfo() {
-    return fetch('http://localhost:3000/getDefaultData')
+    return fetch('http://10.0.2.2:3000/getDefaultData')
 }
+
 function fetchDeleteCalendarItem(id) {
-    return fetch('http://localhost:3000/deleteCalendarItem', {
+    return fetch('http://10.0.2.2:3000/deleteCalendarItem', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -82,10 +97,6 @@ export function upldateCalendarInfo(updatedFields) {
 }
 
 export function uploadDefaultCalendarInfo() {
-    // We can invert control here by returning a function - the "thunk".
-    // When this function is passed to `dispatch`, the thunk middleware will intercept it,
-    // and call it with `dispatch` and `getState` as arguments.
-    // This gives the thunk function the ability to run some logic, and still interact with the store.
     return function (dispatch) {
         try {
             return fetchCalendarInfo().then(

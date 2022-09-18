@@ -1,4 +1,4 @@
-import { ADD_DEFAULT_USER } from '../constants';
+import { ADD_DEFAULT_USER, FIND_USER_BY_ID } from '../constants';
 
 const initialState = {
     defaultUser: {

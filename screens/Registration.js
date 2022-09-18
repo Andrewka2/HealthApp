@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TextInput, Pressable, CheckBox } from "react-native";
 import { modalStyles } from "../styles/modalStyles";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../root/actions/users";
+import { createUser } from "../root/actions/userActions";
 import { useState, useEffect } from 'react';
 
 export default function RegistrationScreen({ navigation }) {
@@ -9,14 +9,13 @@ export default function RegistrationScreen({ navigation }) {
   const defaultUser = useSelector((state) => state.user.defaultUser)
   const dispatch = useDispatch()
 
-  let user = {
-    id: Number,
+  const user = {
+    customId: String,
     email: String,
     password: String
   }
-  user.id = Math.floor(Math.random() * 100000);
 
-  let userData = {
+  const userData = {
     firstName: String,
     lastName: String,
     Phone: String,

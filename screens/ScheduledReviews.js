@@ -144,7 +144,6 @@ export default function ScheduledReviews() {
     }
 
     function onChangeDate(event, selectedDate) {
-      console.log(selectedDate)
       setShowDate(false);
       setDate(selectedDate);
     }

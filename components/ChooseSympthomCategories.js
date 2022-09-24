@@ -6,32 +6,39 @@ export default function ChooseSympthomCategories({pressHandler}) {
     return (
         <ScrollView>
         <View style={styles.container}>
-            <TouchableHighlight onPress={()=> {pressHandler('head')}} style={styles.item}>
+            <TouchableHighlight onPress={()=> {pressHandler('ГОЛОВА')}} style={styles.item}>
                 <View style={styles.itemContainer}>
                     <Image style={styles.itemImage} source={require('../assets/images/head.png')}/>
                     <Text style={styles.itemText}>Голова</Text>
                 </View>
             </TouchableHighlight >
 
-            <TouchableHighlight onPress={()=> {pressHandler('loungs')}} style={styles.item}>
+            <TouchableHighlight onPress={()=> {pressHandler('СЕРЦЕ')}} style={styles.item}>
                 <View style={styles.itemContainer}>
                     <Image style={styles.itemImage} source={require('../assets/images/heart.png')}/>
-                    <Text style={styles.itemText}>Серце</Text>
-                    
+                    <Text style={styles.itemText}>Серце</Text>    
                 </View>
             </TouchableHighlight>
 
-            <TouchableHighlight style={styles.item3}>
-                <Text>Легені</Text>
+            <TouchableHighlight onPress={()=> {pressHandler('ЛЕГЕНІ')}} style={styles.item}>
+            <View style={styles.itemContainer}>
+            <Image style={styles.itemImage} source={require('../assets/images/lungs.png')}/>
+                <Text style={styles.itemText}>Легені</Text>
+            </View>
             </TouchableHighlight>
-            <TouchableHighlight style={styles.item4}>
-                <Text>Живіт</Text>
+
+            <TouchableHighlight onPress={()=> {pressHandler('ШЛУНКОВО-КИШКОВИЙ ТРАКТ')}} style={styles.item}>
+                <View style={styles.itemContainer}>
+                    <Image style={styles.itemImage} source={require('../assets/images/stomach.png')}/>
+                    <Text style={styles.itemText}>ШЛУНКОВО-КИШКОВИЙ ТРАКТ</Text>
+                </View>
             </TouchableHighlight>
-            <TouchableHighlight style={styles.item5}>
-                <Text>Живіт</Text>
-            </TouchableHighlight>
-            <TouchableHighlight style={styles.item6}>
-                <Text>Живіт</Text>
+
+            <TouchableHighlight onPress={()=> {pressHandler('СЕЧО-СТАТЕВА СИСТЕМА')}} style={styles.item}>
+                <View style={styles.itemContainer}>
+                    <Image style={styles.itemImage} source={require('../assets/images/vagina.png')}/>
+                    <Text style={styles.itemText}>СЕЧО-СТАТЕВА СИСТЕМА</Text>
+                </View>
             </TouchableHighlight>
         </View>
         </ScrollView>
@@ -43,12 +50,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        paddingTop: 30,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingBottom: 50
     },
     item: {
         justifyContent: 'center',
-        backgroundColor: '#A4AAA3',
+        backgroundColor: "#cc14aa",
+        backgroundGradientFrom: "#7ff591",
+        backgroundGradientTo: "#f0f716",
+        decimalPlaces: 2,
+            color: (opacity = 1) => rgba(0, 0, 0, 0.1),
         width: '90%',
         height: 120,
         marginBottom: 10,
@@ -61,7 +72,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#fff',
         marginTop: -5,
-        borderRadius: 5
+        borderRadius: 2
     },
     itemImage: {
         width: 50,
@@ -74,33 +85,4 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginBottom: 5
     },
-    item2: {
-        backgroundColor: 'green',
-        width: '48%',
-        margin: 3
-    },
-    item3: {
-        backgroundColor: 'blue',
-        width: '48%',
-        height: 100,
-        margin: 3
-    },
-    item4: {
-        backgroundColor: 'yellow',
-        width: '48%',
-        height: 100,
-        margin: 3
-    },
-    item5: {
-        backgroundColor: 'brown',
-        width: '48%',
-        height: 100,
-        margin: 3
-    },
-    item6: {
-        backgroundColor: 'aqua',
-        width: '48%',
-        height: 100,
-        margin: 3
-    }
 })

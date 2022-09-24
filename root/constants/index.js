@@ -7,3 +7,7 @@ export const ADD_CALENDAR_ITEM = "ADD_CALENDAR_ITEM"
 
 // User
 export const ADD_DEFAULT_USER = "ADD_DEFAULT_USER"
+
+//Quiz
+export const QUIZ_RESULTS = "QUIZ_RESULTS"
+export const ADD_QUIZZ_ITEM = "ADD_QUIZZ_ITEM"

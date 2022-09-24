@@ -1,23 +1,41 @@
-import { ADD_DEFAULT_USER } from '../constants';
+import { ADD_DEFAULT_USER, QUIZ_RESULTS, ADD_QUIZZ_ITEM } from '../constants';
+import { symptoms } from '../../config/symptoms';
 
 const initialState = {
     defaultUser: {
         id: '',
         name: '',
         email: '',
-        isSignedIn: false
-    }
+        isSignedIn: true
+    },
+    quizz: [{data: '',
+    elems: [''],
+    date: '',
+    quizzResult: '', 
+    sypthomType: '',
+    time: ''
+}],
+    quizzItems: symptoms
 }
 
 const userReducer = (state = initialState, action) => {
-    console.log(state);
     switch (action.type) {
-        case ADD_DEFAULT_USER:{
-            console.log('ADD_DEFAULT_USER was entered');
-            console.log(action.payload);
+        case ADD_DEFAULT_USER: {
             return {
                 ...state,
                 defaultUser: action.payload
+            }
+        }
+        case QUIZ_RESULTS: {
+            return {
+                ...state,
+                quizz: [...state.quizz, action.payload ]
+            }
+        }
+        case ADD_QUIZZ_ITEM: {
+            return {
+                ...state,
+                quizzItems: {...state.quizzItems, [action.payload.type]: [ action.payload.elem, ...state.quizzItems[action.payload.type] ] }
             }
         }
         default:

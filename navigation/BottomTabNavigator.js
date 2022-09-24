@@ -36,7 +36,7 @@ const colorScheme = useColorScheme();
       name="Schedule Review"
       component={ScheduleReview}
       />
-      <BottomTab.Screen
+      <BottomTab.Screen 
         name="Quiz"
         component={QuizzScreen}
       />

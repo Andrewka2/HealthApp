@@ -14,6 +14,7 @@ import RegistrationScreen from "../screens/Registration";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import BottomSignInNavigator from "./BottomSignInNavigator";
+import QuizzHistory from "../screens/QuizzHistory";
 
 export default function Navigation({ colorScheme }) {
   return (
@@ -37,16 +38,14 @@ function RootNavigator() {
 
   useEffect(() => {
     setSignedIn(defaultUser.isSignedIn)
-    console.log('signed in');
   }, [defaultUser.isSignedIn])
-  console.log(defaultUser.isSignedIn);
-  console.log(signedIn);
-
+  
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {signedIn == true ? (
         <>
           <Stack.Screen name="Root" component={BottomTabNavigator} />
+          <Stack.Screen name="quizHistory" component={QuizzHistory} />
           <Stack.Screen
             name="NotFound"
             component={NotFoundScreen}

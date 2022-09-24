@@ -1,17 +1,39 @@
 import React from 'react';
 import { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, TextInput, View, Pressable, Image, ImageBackground, ScrollView, Button, Modal, FlatList } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
 import { ChooseSymptomModal } from '../components/chooseSymptomModal';
 import ChooseSympthomCategories from '../components/ChooseSympthomCategories';
+import QuizzResults from '../components/QuizzResults';
+import AddItemModal from '../components/AddItemModal';
 
-export default function QuizzScreen() {
+export default function QuizzScreen({navigation}) {
 
     let [isModalOpen, setIsModalOpen] = useState(false)
+    let [quizzResultModal, setquizzResultModal] = useState(false)
     let [sympthomType, setSympthomType] = useState('')
     let [isView, setIsView] = useState(false)
+    let [quizzResult, setQuizzResult] = useState([])
+    let [addItemModal, setAddItemModal] = useState(false)
+
+    function addItemModalHandler() {
+        setAddItemModal(!addItemModal)
+    }
+
+    function quizzResultModalHandler() {
+        setquizzResultModal(!quizzResultModal)
+    }
+
+    function setQuizzResultHandler(data){
+        setQuizzResult(data)
+        quizzResultModalHandler()
+    }
 
     function viewHandler() {
         setIsView(!isView)
+    }
+
+    function historyHandler(){
+        navigation.navigate('quizHistory')
     }
 
     function pressHandler(type) {
@@ -22,24 +44,32 @@ export default function QuizzScreen() {
     return (
         <View style={styles.quizzScreen}>
             {
-                isModalOpen ? <ChooseSymptomModal sympthomType={sympthomType} isModalOpen={isModalOpen} pressHandler={pressHandler} /> : null
+                isModalOpen ? <ChooseSymptomModal addItemModalHandler={addItemModalHandler} setQuizzResultHandler={setQuizzResultHandler} sympthomType={sympthomType} isModalOpen={isModalOpen} pressHandler={pressHandler} /> : null
             }
-
+            {
+                addItemModal ? <AddItemModal addItemModalHandler={addItemModalHandler} addItemModal={addItemModal}  type={sympthomType}/> : null
+            }
+            {
+                quizzResultModal ? <QuizzResults quizzResultModal={quizzResultModal} quizzResult={quizzResult} quizzResultModalHandler={quizzResultModalHandler}/> : null
+            }
             <TouchableOpacity onPress={viewHandler} style={styles.imageViewCont}>
                 <Image style={styles.imageView} source={require('../assets/images/Person/view.png')} />
             </TouchableOpacity>
+            <TouchableOpacity onPress={historyHandler} style={styles.imageHistoryCont}>
+                <Image style={styles.imageHistory} source={require('../assets/images/Person/history.png')} />
+            </TouchableOpacity>
             {
                 isView ? <ChooseSympthomCategories pressHandler={pressHandler}/> : <View style={styles.imagesCont}>
-                    <TouchableOpacity onPress={() => { pressHandler('head') }} style={styles.imageHeadCont}>
+                    <TouchableOpacity onPress={() => { pressHandler('ГОЛОВА') }} style={styles.imageHeadCont}>
                         <Image style={styles.imageHead} source={require('../assets/images/Person/body1.png')} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => { pressHandler('loungs') }} style={styles.imageCont}>
+                    <TouchableOpacity onPress={() => { pressHandler('СЕРЦЕ') }} style={styles.imageCont}>
                         <Image style={styles.imageLungs} source={require('../assets/images/Person/body2.png')} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => { pressHandler('stomach') }} style={styles.imageStomachCont}>
+                    <TouchableOpacity onPress={() => { pressHandler('ШЛУНКОВО-КИШКОВИЙ ТРАКТ') }} style={styles.imageStomachCont}>
                         <Image style={styles.imageLungs} source={require('../assets/images/Person/body3.png')} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => { pressHandler('foots') }} style={styles.imageBootomCont}>
+                    <TouchableOpacity onPress={() => { pressHandler('СЕЧО-СТАТЕВА СИСТЕМА') }} style={styles.imageBootomCont}>
                         <Image style={styles.imageFoots} source={require('../assets/images/Person/body4.png')} />
                     </TouchableOpacity>
                 </View>
@@ -49,15 +79,25 @@ export default function QuizzScreen() {
 }
 
 const styles = StyleSheet.create({
+    imageHistory: {
+        width: 40,
+        height: 40
+    },
+    imageHistoryCont: {
+        position: 'absolute',
+        top: 2.5,
+        right: 53
+    },
     imageViewCont: {
         justifyContent: 'center',
         alignItems: 'flex-end',
         backgroundColor: '#fff',
-        paddingRight: 5
+        paddingRight: 5,
+        paddingBottom: 10,
     },
     imageView: {
-        width: 30,
-        height: 30
+        width: 45,
+        height: 45
     },
     quizzScreen: {
         position: 'relative'
